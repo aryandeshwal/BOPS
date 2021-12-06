@@ -1,7 +1,7 @@
 ## Bayesian Optimization over Permutation Spaces
 
 
-This repository contains the source code and the resources related to the paper "[Bayesian Optimization over Permutation Spaces]()" published at [AAAI'22](https://aaai.org/Conferences/AAAI-22/) conference. 
+This repository contains the source code and the resources related to the paper "[Bayesian Optimization over Permutation Spaces](https://arxiv.org/abs/2112.01049)" published at [AAAI'22](https://aaai.org/Conferences/AAAI-22/) conference. 
 
 ### Benchmark simulations
 
