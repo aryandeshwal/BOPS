@@ -26,9 +26,23 @@ We provided three real-world benchmarks to drive future research on this importa
   
 
 ### Source code
-As discussed in the paper, we propose two algorithms: BOPS-T and BOPS-H. A good place to start is the floorplanning directory where the files  'floorplan_kendall.py' and 'floorplan_mallows.py' contains the code for BOPS-T and BOPS-H respectively. 
+As discussed in the paper, we propose two algorithms: BOPS-T and BOPS-H. 
 
 
+#### Installation Requirements
+- numpy, scipy
+- PyTorch, GPyTorch, BoTorch
+- [MATLAB engine API for python](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html) (only for BOPS-T) 
+
+#### Example usage on the floorplanning domain:
+
+The floorplanning directory contains two main files: ``floorplan_kendall.py`` and ``floorplan_mallows.py`` for BOPS-T and BOPS-H respectively. 
+
+In ``floorplan_mallows.py``, ``evaluate_floorplan`` method defines a call to the black-box objective function and ``bo_loop`` is the entry point for the code. 
+In ``bo_loop``, ``n_init`` is the number of initial evaluations to initialize the GP surrogate model. The total budget is given by ``n_evals-n_init``. We use the Expected improvement acquisition function which is optimized via local search with multiple restarts. The number of restarts can be changed in line 127.
+
+
+#### Acknowledgements
 BOPS-T utilizes an SDP solver (for acquisition function optimization) implemented [here](https://github.com/fsbravo/csdp).
 BOPS-H is built on top of [GPyTorch](https://github.com/cornellius-gp/gpytorch) and [BoTorch](https://github.com/pytorch/botorch) libraries.
 We thank the original authors for their code.
