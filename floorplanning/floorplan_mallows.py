@@ -19,16 +19,10 @@ from gpytorch.kernels import Kernel
 class MallowsKernel(Kernel):
     has_lengthscale = True
     def forward(self, X, X2, **params):
-        check_extra_dim = 0
         if len(X.shape) > 2:
-            check_extra_dim = X.shape[0]
-            X = X.squeeze(1)
-        if len(X2.shape) > 2:
-            check_extra_dim = X2.shape[0]
-            X2 = X2[0]
-        kernel_mat = torch.sum((X[:, None, :] - X2)**2, axis=-1)
-        if check_extra_dim > 0:
-            kernel_mat = kernel_mat.unsqueeze(1)
+            kernel_mat = torch.sum((X - X2)**2, axis=-1)
+        else:
+            kernel_mat = torch.sum((X[:, None, :] - X2)**2, axis=-1)
         return torch.exp(-self.lengthscale * kernel_mat)
 
 
